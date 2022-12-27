@@ -15,14 +15,32 @@ namespace ConsoleApp1
     }
     class Player
     {
+        public List<Player> Data { get; private set; } = new();
+
+        public int PlayerLevel { get; private set; }
+
+        public string NickName { get; private set; }
+
+        public int UniqueNumber { get; private set; }
+
+        public Player(int playerLevel)
+        {
+            PlayerLevel = playerLevel;
+        }
+
+        public Player(string nickName)
+        {
+            NickName = nickName;
+        }
+
         public Player()
         {
             Console.Write("Введите номер: ");
-            Data.Add(new Data(UniqueNumber = Convert.ToInt32(Console.ReadLine())));
+            Data.Add(new Player(UniqueNumber = Convert.ToInt32(Console.ReadLine()));
             Console.Write("Введите уровень: ");
-            Data.Add(new Data(PlayerLevel = Convert.ToInt32(Console.ReadLine())));
+            Data.Add(new Player(PlayerLevel = Convert.ToInt32(Console.ReadLine())));
             Console.Write("Введите никнейм: ");
-            Data.Add(new Data(NickName = Console.ReadLine()));
+            Data.Add(new Player(NickName = Console.ReadLine()));
         }
 
         public void ShowItems()
@@ -32,25 +50,6 @@ namespace ConsoleApp1
                 Console.Write("Уникальный номер: " + Data[i].UniqueNumber + "Уровень: " + Data[i].PlayerLevel
                 + "Никнейм: " + Data[i].NickName);
             }
-        }
-    }
-
-    class Data
-    {
-        public int PlayerLevel { get; private set; }
-
-        public string NickName { get; private set; }
-
-        public int UniqueNumber { get; private set; }
-
-        public Data(int playerLevel)
-        {
-            PlayerLevel = playerLevel;
-        }
-
-        public Data(string nickName)
-        {
-            NickName = nickName;
         }
     }
 }
