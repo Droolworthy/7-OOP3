@@ -36,7 +36,7 @@ namespace ConsoleApp1
         public Player()
         {
             Console.Write("Введите номер: ");
-            Data.Add(new Player(UniqueNumber = Convert.ToInt32(Console.ReadLine()));
+            Data.Add(new Player(UniqueNumber = Convert.ToInt32(Console.ReadLine())));
             Console.Write("Введите уровень: ");
             Data.Add(new Player(PlayerLevel = Convert.ToInt32(Console.ReadLine())));
             Console.Write("Введите никнейм: ");
