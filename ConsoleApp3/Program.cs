@@ -15,14 +15,6 @@ namespace ConsoleApp1
     }
     class Player
     {
-        public List<Data> Data { get; private set; } = new List<Data>();
-
-        public int UniqueNumber { get; private set; }
-
-        public int PlayerLevel { get; private set; }
-
-        public string NickName { get; private set; }
-
         public Player()
         {
             Console.Write("Введите номер: ");
