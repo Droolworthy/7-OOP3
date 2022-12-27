@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp1
@@ -11,8 +11,8 @@ namespace ConsoleApp1
 
             players.ShowItems();
         }
-
     }
+
     class Player
     {
         public List<Player> Data { get; private set; } = new();
