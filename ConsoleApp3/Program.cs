@@ -7,9 +7,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Player players = new Player();
+            Player player = new Player();
 
-            players.ShowItems();
+            player.ShowItems();
         }
     }
 
