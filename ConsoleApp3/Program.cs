@@ -3,53 +3,61 @@ using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    class Database
+    class Program
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
+            Database database = new();
 
-            player.ShowItems();
+            database.ShowItems();
+        }
+    }
+
+    class Database 
+    {
+        private List<Player> DataPlayers = new();
+
+        public Database()
+        {
+            Console.Write("Введите номер: ");
+            DataPlayers.Add(new Player(Convert.ToInt32(Console.ReadLine())));
+            Console.Write("Введите уровень: ");
+            DataPlayers.Add(new Player(Convert.ToInt32(Console.ReadLine())));
+            Console.Write("Введите никнейм: ");
+            DataPlayers.Add(new Player(Console.ReadLine()));
+        }
+
+        public void ShowItems()
+        {
+            //for (int i = 1; i < DataPlayers.Count; i++)
+            //{
+            //    Console.Write("Уникальный номер: " + DataPlayers[i].UniqueNumber + "Уровень: " + DataPlayers[i].PlayerLevel
+            //    + "Никнейм: " + DataPlayers[i].NickName);
+            //}
+
+            foreach ( Player player in DataPlayers)
+            {
+                Console.WriteLine("Уникальный номер: " + player.UniqueNumber + "Уровень: " + player.PlayerLevel + "Никнейм: " + player.NickName);
+            }
         }
     }
 
     class Player
     {
-        private List<Player> Data = new();
-
         public int PlayerLevel { get; private set; }
 
         public string NickName { get; private set; }
 
-        public int UniqueNumber { get; private set; }
+        public int UniqueNumber { get; private set; }  
 
         public Player(int playerLevel)
         {
-            PlayerLevel = playerLevel;
+            PlayerLevel = playerLevel;   
         }
 
         public Player(string nickName)
         {
             NickName = nickName;
-        }
-
-        public Player()
-        {
-            Console.Write("Введите номер: ");
-            Data.Add(new Player(UniqueNumber = Convert.ToInt32(Console.ReadLine())));
-            Console.Write("Введите уровень: ");
-            Data.Add(new Player(PlayerLevel = Convert.ToInt32(Console.ReadLine())));
-            Console.Write("Введите никнейм: ");
-            Data.Add(new Player(NickName = Console.ReadLine()));
-        }
-
-        public void ShowItems()
-        {
-            for (int i = 1; i < Data.Count; i++)
-            {
-                Console.Write("Уникальный номер: " + Data[i].UniqueNumber + "Уровень: " + Data[i].PlayerLevel
-                + "Никнейм: " + Data[i].NickName);
-            }
         }
     }
 }
