@@ -15,7 +15,7 @@ namespace ConsoleApp1
 
     class Player
     {
-        public List<Player> Data { get; private set; } = new();
+        private List<Player> Data = new();
 
         public int PlayerLevel { get; private set; }
 
