@@ -17,7 +17,7 @@ namespace ConsoleApp1
     {
         private List<Player> DataPlayers = new();
 
-        public Database()
+        public void DatabasePlayers()
         {
             Console.Write("Введите номер: ");
             DataPlayers.Add(new Player(Convert.ToInt32(Console.ReadLine())));
