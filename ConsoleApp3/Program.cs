@@ -29,15 +29,10 @@ namespace ConsoleApp1
 
         public void ShowItems()
         {
-            //for (int i = 1; i < DataPlayers.Count; i++)
-            //{
-            //    Console.Write("Уникальный номер: " + DataPlayers[i].UniqueNumber + "Уровень: " + DataPlayers[i].PlayerLevel
-            //    + "Никнейм: " + DataPlayers[i].NickName);
-            //}
-
-            foreach ( Player player in DataPlayers)
+            for (int i = 1; i < DataPlayers.Count; i++)
             {
-                Console.WriteLine("Уникальный номер: " + player.UniqueNumber + "Уровень: " + player.PlayerLevel + "Никнейм: " + player.NickName);
+               Console.Write("Уникальный номер: " + DataPlayers[i].UniqueNumber + "Уровень: " + DataPlayers[i].PlayerLevel
+                + "Никнейм: " + DataPlayers[i].NickName);
             }
         }
     }
