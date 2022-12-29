@@ -17,7 +17,7 @@ namespace ConsoleApp1
     {
         private List<Player> DataPlayers = new();
 
-        public void DatabasePlayers()
+        public Database()
         {
             Console.Write("Введите номер: ");
             DataPlayers.Add(new Player(Convert.ToInt32(Console.ReadLine())));
@@ -45,14 +45,14 @@ namespace ConsoleApp1
 
         public int UniqueNumber { get; private set; }  
 
-        public Player(int playerLevel)
+        public Player(int gamerLevel)
         {
-            PlayerLevel = playerLevel;   
+            PlayerLevel = gamerLevel;   
         }
 
-        public Player(string nickName)
+        public Player(string moniker)
         {
-            NickName = nickName;
+            NickName = moniker; 
         }
     }
 }
