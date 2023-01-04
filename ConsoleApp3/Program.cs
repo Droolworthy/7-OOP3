@@ -7,6 +7,10 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            string enterNumber = "Уникальный номер: ";
+            string enterLevel = "\nУровень: ";
+            string enterNickName = "\nНикнейм: ";
+            
             Database database = new();
 
             database.ShowItems();
