@@ -6,11 +6,7 @@ namespace ConsoleApp1
     class Program
     {
         static void Main(string[] args)
-        {
-            string enterNumber = "Уникальный номер: ";
-            string enterLevel = "\nУровень: ";
-            string enterNickName = "\nНикнейм: ";
-            
+        {        
             Database database = new();
 
             database.ShowItems();
@@ -23,8 +19,7 @@ namespace ConsoleApp1
 
         public Database()
         {
-            DataPlayers.Add(new Player("Введите номер: ", Convert.ToInt32(Console.ReadLine()), "Введите уровень: ",
-                Console.ReadLine(), "Введите никнейм: ", Convert.ToInt32(Console.ReadLine())));
+            DataPlayers.Add(new Player(Convert.ToInt32(Console.ReadLine()), Console.ReadLine(), Convert.ToInt32(Console.ReadLine())));
         }
 
         public void ShowItems()
@@ -39,25 +34,16 @@ namespace ConsoleApp1
 
     class Player
     {
-        public string EnterLevel { get; private set; }
-
-        public string EnterNickName { get; private set; }
-
         public int PlayerLevel { get; private set; }
 
         public string NickName { get; private set; }        
 
-        public string EnterNumber { get; private set; }
-
         public int UniqueNumber { get; private set; }
 
-        public Player(string enterNumber, int individualNumber, string enterLevel, string moniker, string enterNickName, int gamerLevel)
+        public Player(int individualNumber, string moniker, int gamerLevel)
         {
-            EnterNumber = enterNumber;
             UniqueNumber = individualNumber;
-            EnterLevel = enterLevel;
             PlayerLevel = gamerLevel;
-            EnterNickName = enterNickName;
             NickName = moniker;
         }
     }
