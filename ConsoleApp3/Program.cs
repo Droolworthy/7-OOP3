@@ -7,11 +7,15 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите номер: ");
+            string enterNumber = "Уникальный номер: ";
+            string enterLevel = "Введите уровень: ";
+            string enterNickName = "Введите никнейм: ";
+
+            Console.Write(enterNumber);
             int individualNumber = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Введите никнейм: ");
+            Console.Write(enterNickName);
             string moniker = Console.ReadLine();
-            Console.Write("Введите уровень: ");
+            Console.Write(enterLevel);
             int gamerLevel = Convert.ToInt32(Console.ReadLine());
 
             Database database = new(individualNumber, moniker, gamerLevel);
