@@ -7,18 +7,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string enterNumber = "Уникальный номер: ";
-            string enterLevel = "\nУровень: ";
-            string enterNickName = "\nНикнейм: ";
-
-            Console.Write(enterNumber);
+            Console.Write("Введите номер: ");
             int individualNumber = Convert.ToInt32(Console.ReadLine());
-            Console.Write(enterNickName);
-            string moniker = Console.ReadLine();           
-            Console.Write(enterLevel);
+            Console.Write("Введите никнейм: ");
+            string moniker = Console.ReadLine();
+            Console.Write("Введите уровень: ");
             int gamerLevel = Convert.ToInt32(Console.ReadLine());
 
-            Database database = new(enterNumber, individualNumber, enterNickName, moniker, enterLevel, gamerLevel);
+            Database database = new(individualNumber, moniker, gamerLevel);
 
             database.ShowItems();
         }
@@ -28,9 +24,9 @@ namespace ConsoleApp1
     {
         private List<Player> DataPlayers = new();
 
-        public Database(string enterNumber, int individualNumber, string enterNickName, string moniker, string enterLevel, int gamerLevel)
+        public Database(int individualNumber, string moniker, int gamerLevel)
         {
-           DataPlayers.Add(new Player(enterNumber, Convert.ToInt32(Console.ReadLine()), enterNickName, moniker, enterLevel, gamerLevel)); 
+           DataPlayers.Add(new Player(individualNumber, moniker, gamerLevel)); 
         }
 
         public void ShowItems()
@@ -45,27 +41,17 @@ namespace ConsoleApp1
 
     class Player
     {
-        public string EnterNumber;
-
-        public string EnterLevel;
-
-        public string EnterNickName;
-
         public int PlayerLevel { get; private set; }
 
         public string NickName { get; private set; }
 
         public int UniqueNumber { get; private set; }
 
-        public Player(string enterNumber, int individualNumber, string enterNickName, string moniker, string enterLevel, int gamerLevel)
+        public Player(int individualNumber, string moniker, int gamerLevel)
         {
-            EnterNumber = enterNumber;
-            EnterNickName = enterNickName;
-            EnterLevel = enterLevel;
-            EnterNumber = enterNumber;
             UniqueNumber = individualNumber;
-            PlayerLevel = gamerLevel;
-            NickName = moniker;            
+            NickName = moniker;
+            PlayerLevel = gamerLevel;                    
         }
     }
 }
