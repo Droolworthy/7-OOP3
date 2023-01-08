@@ -7,55 +7,56 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string enterNumber = "Уникальный номер: ";
-            string enterLevel = "Введите уровень: ";
-            string enterNickName = "Введите никнейм: ";
-
-            Console.Write(enterNumber);
-            int individualNumber = Convert.ToInt32(Console.ReadLine());
-            Console.Write(enterNickName);
-            string moniker = Console.ReadLine();
-            Console.Write(enterLevel);
-            int gamerLevel = Convert.ToInt32(Console.ReadLine());
-
-            Database database = new(individualNumber, moniker, gamerLevel);
-
-            database.ShowItems();
-        }
-    }
-
-    class Database
-    {
-        private List<Player> DataPlayers = new();
-
-        public Database(int individualNumber, string moniker, int gamerLevel)
-        {
-           DataPlayers.Add(new Player(individualNumber, moniker, gamerLevel)); 
-        }
-
-        public void ShowItems()
-        {
-            for (int i = 0; i < DataPlayers.Count; i++)
             {
-                Console.Write("\nУникальный номер: " + DataPlayers[i].UniqueNumber + "\nУровень: " + DataPlayers[i].PlayerLevel
-                 + "\nНикнейм: " + DataPlayers[i].NickName);
+                Player player = Database.CreateFromConsole();
+
+                Database database = new();
+
+                database.ShowItems();                
             }
         }
-    }
-
-    class Player
-    {
-        public int PlayerLevel { get; private set; }
-
-        public string NickName { get; private set; }
-
-        public int UniqueNumber { get; private set; }
-
-        public Player(int individualNumber, string moniker, int gamerLevel)
+        class Database
         {
-            UniqueNumber = individualNumber;
-            NickName = moniker;
-            PlayerLevel = gamerLevel;                    
+            private static List<Player> DataPlayers = new();
+
+            public static Player CreateFromConsole()
+            {           
+                Console.Write("Введите номер: ");
+                int individualNumber = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите уровень: ");
+                int gamerLevel = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите никнейм: ");
+                string moniker = Console.ReadLine();
+
+                DataPlayers.Add(new Player(individualNumber, gamerLevel, moniker));
+
+                return new Player(individualNumber, gamerLevel, moniker);               
+            }
+
+            public void ShowItems()
+            {
+                for (int i = 0; i < DataPlayers.Count; i++)
+                {
+                    Console.Write("\nУникальный номер: " + DataPlayers[i].UniqueNumber + "\nУровень: " + DataPlayers[i].PlayerLevel
+                     + "\nНикнейм: " + DataPlayers[i].NickName);
+                }
+            }
+        }
+
+        class Player
+        {
+            public int PlayerLevel { get; private set; }
+
+            public string NickName { get; private set; }
+
+            public int UniqueNumber { get; private set; }
+
+            public Player(int individualNumber, int gamerLevel, string moniker)
+            {
+                UniqueNumber = individualNumber;
+                PlayerLevel = gamerLevel;
+                NickName = moniker;
+            }
         }
     }
 }
