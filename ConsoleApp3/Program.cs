@@ -8,18 +8,18 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             {
-                Player player = Database.CreateFromConsole();
-
                 Database database = new();
 
-                database.ShowItems();                
+                Database.AddPlayer();
+
+                database.ShowItems();                   
             }
         }
         class Database
         {
             private static List<Player> DataPlayers = new();
 
-            public static Player CreateFromConsole()
+            public static Player AddPlayer()
             {           
                 Console.Write("Введите номер: ");
                 int individualNumber = Convert.ToInt32(Console.ReadLine());
