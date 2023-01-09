@@ -19,7 +19,7 @@ namespace ConsoleApp1
         {
             private static List<Player> DataPlayers = new();
 
-            public static Player AddPlayer()
+            public static void AddPlayer()
             {           
                 Console.Write("Введите номер: ");
                 int individualNumber = Convert.ToInt32(Console.ReadLine());
@@ -29,8 +29,6 @@ namespace ConsoleApp1
                 string moniker = Console.ReadLine();
 
                 DataPlayers.Add(new Player(individualNumber, gamerLevel, moniker));
-
-                return new Player(individualNumber, gamerLevel, moniker);               
             }
 
             public void ShowItems()
