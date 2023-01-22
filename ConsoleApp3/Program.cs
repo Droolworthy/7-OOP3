@@ -8,35 +8,49 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             {
-                Database database = new();
+                bool isWorking = true;
+                string userInput;
+                const string CommandAddDossier = "add";
+                const string CommandOutputAllDossiers = "out";
+                const string CommandExit = "exit";
 
-                Database.AddPlayer();
+                while (isWorking)
+                {
+                    Console.Write("\nВведите команду: ");
+                    userInput = Console.ReadLine();
 
-                database.ShowItems();                   
+                    switch (userInput)
+                    {
+                        case CommandAddDossier:
+                            Database.AddPlayer();
+                            break;
+                        case CommandOutputAllDossiers:
+                            Database.ShowItems();
+                            break;
+                        case CommandExit:
+                            isWorking = false;
+                            break;
+                    }
+                }
             }
         }
+
         class Database
         {
             private static List<Player> DataPlayers = new();
 
             public static void AddPlayer()
-            {           
-                Console.Write("Введите номер: ");
-                int individualNumber = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Введите уровень: ");
-                int gamerLevel = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Введите никнейм: ");
-                string moniker = Console.ReadLine();
-
-                DataPlayers.Add(new Player(individualNumber, gamerLevel, moniker));
+            {
+                Console.WriteLine("Введите стринг: ");
+                DataPlayers.Add(new Player(nickName: Console.ReadLine()));                         
             }
 
-            public void ShowItems()
+            public static void ShowItems()
             {
                 for (int i = 0; i < DataPlayers.Count; i++)
                 {
                     Console.Write("\nУникальный номер: " + DataPlayers[i].UniqueNumber + "\nУровень: " + DataPlayers[i].PlayerLevel
-                     + "\nНикнейм: " + DataPlayers[i].NickName);
+                      + "\nНикнейм: " + DataPlayers[i].NickName);
                 }
             }
         }
@@ -49,11 +63,13 @@ namespace ConsoleApp1
 
             public int UniqueNumber { get; private set; }
 
-            public Player(int individualNumber, int gamerLevel, string moniker)
+            
+
+            public Player(int individualNumber = 1, int playerLevel = 1, string nickName = null)
             {
                 UniqueNumber = individualNumber;
-                PlayerLevel = gamerLevel;
-                NickName = moniker;
+                PlayerLevel = playerLevel;
+                NickName = nickName;
             }
         }
     }
