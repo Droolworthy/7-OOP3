@@ -7,9 +7,32 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Database.AddPlayer();
+            {
+                bool isWorking = true;
+                string userInput;
+                const string CommandAddDossier = "add";
+                const string CommandOutputAllDossiers = "out";
+                const string CommandExit = "exit";
 
-            Database.ShowInfo();
+                while (isWorking)
+                {
+                    Console.Write("\nВведите команду: ");
+                    userInput = Console.ReadLine();
+
+                    switch (userInput)
+                    {
+                        case CommandAddDossier:
+                            Database.AddPlayer();
+                            break;
+                        case CommandOutputAllDossiers:
+                            Database.ShowItems();
+                            break;
+                        case CommandExit:
+                            isWorking = false;
+                            break;
+                    }
+                }
+            }
         }
 
         class Database
@@ -24,7 +47,7 @@ namespace ConsoleApp1
                 DataPlayers.Add(new Player(nickName: Console.ReadLine()));
             }
 
-            public static void ShowInfo()
+            public static void ShowItems()
             {
                 for (int i = 0; i < DataPlayers.Count; i++)
                 {
@@ -36,22 +59,20 @@ namespace ConsoleApp1
 
         class Player
         {
+            public Player(string nickName)
+            {
+                UniqueNumber = ++Identifications;
+                PlayerLevel = Identifications;
+                NickName = nickName;
+            }
+
+            private static int Identifications;
+
             public int PlayerLevel { get; private set; }
 
             public string NickName { get; private set; }
 
-            public int UniqueNumber { get; private set; }
-
-            public static int IdentificationsLevel;
-
-            public static int IdentificationsNumber;
-
-            public Player(string nickName)
-            {
-                UniqueNumber = ++IdentificationsNumber;
-                PlayerLevel = ++IdentificationsLevel;
-                NickName = nickName;
-            }
+            public int UniqueNumber { get; private set; }                  
         }
     }
 }
