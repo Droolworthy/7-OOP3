@@ -7,32 +7,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            {
-                bool isWorking = true;
-                string userInput;
-                const string CommandAddDossier = "add";
-                const string CommandOutputAllDossiers = "out";
-                const string CommandExit = "exit";
+            Database.AddPlayer();
 
-                while (isWorking)
-                {
-                    Console.Write("\nВведите команду: ");
-                    userInput = Console.ReadLine();
-
-                    switch (userInput)
-                    {
-                        case CommandAddDossier:
-                            Database.AddPlayer();
-                            break;
-                        case CommandOutputAllDossiers:
-                            Database.ShowItems();
-                            break;
-                        case CommandExit:
-                            isWorking = false;
-                            break;
-                    }
-                }
-            }
+            Database.ShowItems();
         }
 
         class Database
@@ -43,6 +20,7 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("Номер добавлен.");
                 Console.WriteLine("Уровень добавлен.");
+                Console.WriteLine("Флаг добавлен.");
                 Console.Write("Введите никнейм: ");
                 DataPlayers.Add(new Player(nickName: Console.ReadLine()));
             }
@@ -53,6 +31,15 @@ namespace ConsoleApp1
                 {
                     Console.Write("\nУникальный номер: " + DataPlayers[i].UniqueNumber + "\nУровень: " + DataPlayers[i].PlayerLevel
                       + "\nНикнейм: " + DataPlayers[i].NickName);
+
+                    if (DataPlayers[i].Flag)
+                    {
+                        Console.WriteLine("\nИгрок не забанен");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Игрок забанен");
+                    }
                 }
             }
         }
@@ -63,16 +50,19 @@ namespace ConsoleApp1
             {
                 UniqueNumber = ++Identifications;
                 PlayerLevel = Identifications;
+                Flag = true;
                 NickName = nickName;
             }
 
             private static int Identifications;
 
+            public bool Flag { get; private set; }
+
             public int PlayerLevel { get; private set; }
 
             public string NickName { get; private set; }
 
-            public int UniqueNumber { get; private set; }                  
+            public int UniqueNumber { get; private set; }              
         }
     }
 }
