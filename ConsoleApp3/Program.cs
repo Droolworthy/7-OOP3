@@ -56,13 +56,13 @@ namespace ConsoleApp1
 
             private static int Identifications;
 
-            public bool Flag { get; private set; }
+            public int UniqueNumber { get; private set; }
 
             public int PlayerLevel { get; private set; }
 
             public string NickName { get; private set; }
 
-            public int UniqueNumber { get; private set; }              
+            public bool Flag { get; private set; }
         }
     }
 }
