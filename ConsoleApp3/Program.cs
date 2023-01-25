@@ -32,7 +32,7 @@ namespace ConsoleApp1
                     Console.Write("\nУникальный номер: " + DataPlayers[i].UniqueNumber + "\nУровень: " + DataPlayers[i].PlayerLevel
                       + "\nНикнейм: " + DataPlayers[i].NickName);
 
-                    if (DataPlayers[i].Flag)
+                    if (DataPlayers[i].IsBanned)
                     {
                         Console.WriteLine("\nИгрок не забанен");
                     }
@@ -51,7 +51,7 @@ namespace ConsoleApp1
                 UniqueNumber = ++Identifications;
                 PlayerLevel = Identifications;
                 NickName = nickName;
-                Flag = true;  
+                IsBanned = true;  
             }
 
             private static int Identifications;
@@ -62,7 +62,7 @@ namespace ConsoleApp1
 
             public string NickName { get; private set; }
 
-            public bool Flag { get; private set; }
+            public bool IsBanned { get; private set; }
         }
     }
 }
