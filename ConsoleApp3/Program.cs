@@ -50,8 +50,8 @@ namespace ConsoleApp1
             {
                 UniqueNumber = ++Identifications;
                 PlayerLevel = Identifications;
-                Flag = true;
                 NickName = nickName;
+                Flag = true;  
             }
 
             private static int Identifications;
