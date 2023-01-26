@@ -80,12 +80,12 @@ namespace OOP3
                 if (playerNumber < DataPlayers.Count && playerNumber >= 0)
                 {
                     DataPlayers.RemoveAt(playerNumber);
-                    Console.WriteLine("Игрок удалён!");
+                    Console.WriteLine("Игрок удалён.");
                 }
             }
             else
             {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз");
+                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
             }
         }
 
@@ -106,7 +106,7 @@ namespace OOP3
             }
             else
             {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз");
+                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
             }
         }
 
@@ -127,7 +127,7 @@ namespace OOP3
             }
             else
             {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз");
+                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
             }
         }
 
@@ -140,11 +140,11 @@ namespace OOP3
 
                 if (DataPlayers[i].IsBanned)
                 {
-                    Console.WriteLine("\nИгрок свободен");
+                    Console.WriteLine("\nИгрок свободен.");
                 }
                 else
                 {
-                    Console.WriteLine("\nИгрок зазблокирован");
+                    Console.WriteLine("\nИгрок заблокирован.");
                 }
             }
         }
