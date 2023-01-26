@@ -73,13 +73,13 @@ namespace OOP3
             Console.Write("\nВведите номер в списке для удаления пользователя: ");
             string userInput = Console.ReadLine();
 
-            bool isSuccess = int.TryParse(userInput, out int playerNumber);
+            bool isSuccess = int.TryParse(userInput, out int userNumber);
 
             if (isSuccess)
             {
-                if (playerNumber < DataPlayers.Count && playerNumber >= 0)
+                if (userNumber < DataPlayers.Count && userNumber >= 0)
                 {
-                    DataPlayers.RemoveAt(playerNumber);
+                    DataPlayers.RemoveAt(userNumber);
                     Console.WriteLine("Игрок удалён.");
                 }
             }
