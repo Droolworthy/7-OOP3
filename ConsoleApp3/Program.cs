@@ -57,7 +57,7 @@ namespace OOP3
 
     class Database
     {
-        private static List<Player> DataPlayers = new();
+        private static List<Player> _dataPlayers = new List<Player>();
 
         public static void AddUser()
         {
@@ -65,7 +65,7 @@ namespace OOP3
             Console.WriteLine("Уровень добавлен.");
             Console.WriteLine("Уровень доступа добавлен.");
             Console.Write("Введите никнейм: ");
-            DataPlayers.Add(new Player(nickName:Console.ReadLine()));
+            _dataPlayers.Add(new Player(nickName: Console.ReadLine()));
         }
 
         public static void DeleteUser()
@@ -77,9 +77,9 @@ namespace OOP3
 
             if (isSuccess)
             {
-                if (userNumber < DataPlayers.Count && userNumber >= 0)
+                if (userNumber < _dataPlayers.Count && userNumber >= 0)
                 {
-                    DataPlayers.RemoveAt(userNumber);
+                    _dataPlayers.RemoveAt(userNumber);
                     Console.WriteLine("Игрок удалён.");
                 }
             }
@@ -98,9 +98,9 @@ namespace OOP3
 
             if (isSuccess)
             {
-                if (userNumber >= 0 && userNumber < DataPlayers.Count)
+                if (userNumber >= 0 && userNumber < _dataPlayers.Count)
                 {
-                    DataPlayers[userNumber].BanUser();
+                    _dataPlayers[userNumber].BanUser();
                     Console.WriteLine("Игрок заблокирован.");
                 }
             }
@@ -119,9 +119,9 @@ namespace OOP3
 
             if (isSuccess)
             {
-                if (userNumber >= 0 && userNumber < DataPlayers.Count)
+                if (userNumber >= 0 && userNumber < _dataPlayers.Count)
                 {
-                    DataPlayers[userNumber].UnbanUser();
+                    _dataPlayers[userNumber].UnbanUser();
                     Console.WriteLine("Игрок разблокирован.");
                 }
             }
@@ -133,12 +133,12 @@ namespace OOP3
 
         public static void ShowItems()
         {
-            for (int i = 0; i < DataPlayers.Count; i++)
+            for (int i = 0; i < _dataPlayers.Count; i++)
             {
-                Console.Write("\nНомер в списке - " + i + " " + "\nУникальный номер - " + DataPlayers[i].UniqueNumber + "\nУровень - " + DataPlayers[i].PlayerLevel
-                  + "\nНикнейм: " + DataPlayers[i].NickName);
+                Console.Write("\nНомер в списке - " + i + " " + "\nУникальный номер - " + _dataPlayers[i].UniqueNumber + "\nУровень - " + _dataPlayers[i].PlayerLevel
+                  + "\nНикнейм: " + _dataPlayers[i].NickName);
 
-                if (DataPlayers[i].IsBanned)
+                if (_dataPlayers[i].IsBanned)
                 {
                     Console.WriteLine("\nИгрок свободен.");
                 }
@@ -188,7 +188,7 @@ namespace OOP3
 
         public bool IsBanned { get; private set; }
 
-        public void BanUser() 
+        public void BanUser()
         {
             IsBanned = false;
         }
