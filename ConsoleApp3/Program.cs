@@ -7,14 +7,16 @@ namespace OOP3
     {
         static void Main(string[] args)
         {
-            bool isWorking = true;
-            string userInput;
             const string CommandAddUser = "add";
             const string CommandOutputAllUsers = "output";
             const string CommandDeleteUser = "delete";
             const string CommandBlockUser = "ban";
             const string CommandUnlockUser = "unlock";
             const string CommandExit = "exit";
+
+            Database database = new Database();
+            bool isWorking = true;
+            string userInput;
 
             Database.ShowMenu();
 
@@ -29,23 +31,29 @@ namespace OOP3
                 switch (userInput)
                 {
                     case CommandAddUser:
-                        Database.AddUser();
+                        database.AddUser();
                         break;
+
                     case CommandOutputAllUsers:
-                        Database.ShowItems();
+                        database.ShowItems();
                         break;
+
                     case CommandDeleteUser:
-                        Database.DeleteUser();
+                        database.DeleteUser();
                         break;
+
                     case CommandBlockUser:
-                        Database.BlockUser();
+                        database.BlockUser();
                         break;
+
                     case CommandUnlockUser:
-                        Database.UnlockUser();
+                        database.UnlockUser();
                         break;
+
                     case CommandExit:
                         isWorking = false;
                         break;
+
                     default:
                         Console.WriteLine($"\nВведите {CommandAddUser}, {CommandOutputAllUsers}, {CommandDeleteUser}, " +
                             $"{CommandBlockUser}, {CommandUnlockUser} или {CommandExit}");
@@ -57,9 +65,9 @@ namespace OOP3
 
     class Database
     {
-        private static List<Player> _dataPlayers = new List<Player>();
+        private List<Player> _dataPlayers = new();
 
-        public static void AddUser()
+        public void AddUser()
         {
             Console.WriteLine("\nНомер добавлен.");
             Console.WriteLine("Уровень добавлен.");
@@ -68,7 +76,7 @@ namespace OOP3
             _dataPlayers.Add(new Player(nickName: Console.ReadLine()));
         }
 
-        public static void DeleteUser()
+        public void DeleteUser()
         {
             Console.Write("\nВведите номер в списке для удаления пользователя: ");
             string userInput = Console.ReadLine();
@@ -89,7 +97,7 @@ namespace OOP3
             }
         }
 
-        public static void BlockUser()
+        public void BlockUser()
         {
             Console.Write("Введите номер в списке для блокировки пользователя: ");
             string userInput = Console.ReadLine();
@@ -98,7 +106,7 @@ namespace OOP3
 
             if (isSuccess)
             {
-                if (userNumber >= 0 && userNumber < _dataPlayers.Count)
+                if (userNumber < _dataPlayers.Count)
                 {
                     _dataPlayers[userNumber].BanUser();
                     Console.WriteLine("Игрок заблокирован.");
@@ -110,7 +118,7 @@ namespace OOP3
             }
         }
 
-        public static void UnlockUser()
+        public void UnlockUser()
         {
             Console.Write("Введите номер в списке для разблокировки пользователя: ");
             string userInput = Console.ReadLine();
@@ -131,7 +139,7 @@ namespace OOP3
             }
         }
 
-        public static void ShowItems()
+        public void ShowItems()
         {
             for (int i = 0; i < _dataPlayers.Count; i++)
             {
