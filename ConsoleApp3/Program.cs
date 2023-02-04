@@ -103,27 +103,28 @@ namespace OOP3
 
             bool isSuccess = int.TryParse(userInput, out int userNumber);
 
-            for (int i = 0; i < _dataPlayers.Count; i++)
+            if (isSuccess)
             {
-                player = _dataPlayers[i];
-
-                if (isSuccess)
+                for(int i = 0; i < _dataPlayers.Count; i++)
                 {
-                    if(userNumber < _dataPlayers.Count && userNumber >= 0)
+                    player = _dataPlayers[i];                    
+
+                    if (userNumber < _dataPlayers.Count && userNumber >= 0)
                     {
-                        if (player.UniqueNumber == userNumber)
+                        if (userNumber == _dataPlayers[i].UniqueNumber)
                         {
                             Console.WriteLine(DescriptionSuccessInput);
                             return true;
                         }
-                    }                                
-                }
-                else
-                {
-                    Console.WriteLine("Ошибка. Попробуйте ещё раз");
+                    }
                 }
             }
-            return true;
+            else
+            {
+                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
+            }
+            
+            return false;
         }   
 
         public void ShowItems()
