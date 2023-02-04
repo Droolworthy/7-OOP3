@@ -78,72 +78,59 @@ namespace OOP3
 
         public void DeleteUser()
         {
-            Console.Write("\nВведите номер в списке для удаления пользователя: ");
-            string userInput = Console.ReadLine();
-
-            bool isSuccess = int.TryParse(userInput, out int userNumber);
-
-            if (isSuccess)
-            {
-                if (userNumber < _dataPlayers.Count && userNumber >= 0)
-                {
-                    _dataPlayers.RemoveAt(userNumber);
-                    Console.WriteLine("Игрок удалён.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
-            }
+            TryGetPlayer("\nВведите номер для удаления пользователя: ", "Игрок удалён.", out Player player);
+            _dataPlayers.Remove(player);
         }
 
         public void BlockUser()
         {
-            Console.Write("Введите номер в списке для блокировки пользователя: ");
-            string userInput = Console.ReadLine();
-
-            bool isSuccess = int.TryParse(userInput, out int userNumber);
-
-            if (isSuccess)
-            {
-                if (userNumber < _dataPlayers.Count)
-                {
-                    _dataPlayers[userNumber].BanUser();
-                    Console.WriteLine("Игрок заблокирован.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
-            }
+            TryGetPlayer("Введите номер для блокировки пользователя: ", "Игрок заблокирован.", out Player player);
+            player.BanUser();
         }
 
         public void UnlockUser()
         {
-            Console.Write("Введите номер в списке для разблокировки пользователя: ");
+            TryGetPlayer("Введите номер для разблокировки пользователя: ", "Игрок разблокирован.", out Player player);
+            player.UnbanUser();
+        }
+
+        private bool TryGetPlayer(string inputDescription, string DescriptionSuccessInput, out Player player)
+        {
+            player = null;
+
+            Console.Write(inputDescription);
             string userInput = Console.ReadLine();
 
             bool isSuccess = int.TryParse(userInput, out int userNumber);
 
-            if (isSuccess)
+            for (int i = 0; i < _dataPlayers.Count; i++)
             {
-                if (userNumber >= 0 && userNumber < _dataPlayers.Count)
+                player = _dataPlayers[i];
+
+                if (isSuccess)
                 {
-                    _dataPlayers[userNumber].UnbanUser();
-                    Console.WriteLine("Игрок разблокирован.");
+                    if(userNumber < _dataPlayers.Count && userNumber >= 0)
+                    {
+                        if (player.UniqueNumber == userNumber)
+                        {
+                            Console.WriteLine(DescriptionSuccessInput);
+                            return true;
+                        }
+                    }                                
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка. Попробуйте ещё раз");
                 }
             }
-            else
-            {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
-            }
-        }
+            return true;
+        }   
 
         public void ShowItems()
         {
             for (int i = 0; i < _dataPlayers.Count; i++)
             {
-                Console.Write("\nНомер в списке - " + i + " " + "\nУникальный номер - " + _dataPlayers[i].UniqueNumber + "\nУровень - " + _dataPlayers[i].PlayerLevel
+                Console.Write("\nУникальный номер - " + _dataPlayers[i].UniqueNumber + "\nУровень - " + _dataPlayers[i].PlayerLevel
                   + "\nНикнейм: " + _dataPlayers[i].NickName);
 
                 if (_dataPlayers[i].IsBanned)
