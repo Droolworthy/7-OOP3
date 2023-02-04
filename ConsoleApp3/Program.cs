@@ -18,7 +18,7 @@ namespace OOP3
             bool isWorking = true;
             string userInput;
 
-            Database.ShowMenu();
+            database.ShowMenu();
 
             while (isWorking)
             {
@@ -26,7 +26,7 @@ namespace OOP3
                 userInput = Console.ReadLine();
 
                 Console.Clear();
-                Database.ShowMenu();
+                database.ShowMenu();
 
                 switch (userInput)
                 {
@@ -94,6 +94,42 @@ namespace OOP3
             player.UnbanUser();
         }
 
+        public void ShowItems()
+        {
+            for (int i = 0; i < _dataPlayers.Count; i++)
+            {
+                Console.Write("\nУникальный номер - " + _dataPlayers[i].UniqueNumber + "\nУровень - " + _dataPlayers[i].PlayerLevel
+                  + "\nНикнейм: " + _dataPlayers[i].NickName);
+
+                if (_dataPlayers[i].IsBanned)
+                {
+                    Console.WriteLine("\nИгрок свободен.");
+                }
+                else
+                {
+                    Console.WriteLine("\nИгрок заблокирован.");
+                }
+            }
+        }
+
+        public void ShowMenu()
+        {
+            const string CommandAddUser = "add";
+            const string CommandOutputAllUsers = "output";
+            const string CommandDeleteUser = "delete";
+            const string CommandBlockUser = "ban";
+            const string CommandUnlockUser = "unlock";
+            const string CommandExit = "exit";
+
+            Console.WriteLine("=============M--------Е---------Н--------Ю==========");
+            Console.WriteLine($"||||||||||------{CommandAddUser} - ДОБАВИТЬ ИГРОКА------|||||||||");
+            Console.WriteLine($"||||||||||--{CommandOutputAllUsers} - ВЫВЕСТИ ВСЁХ ИГРОКОВ--|||||||||");
+            Console.WriteLine($"||||||||||--{CommandBlockUser} - ЗАБЛОКИРОВАТЬ ИГРОКА-----|||||||||");
+            Console.WriteLine($"||||||||||--{CommandUnlockUser} - РАЗБЛОКИРОВАТЬ ИГРОКА-|||||||||");
+            Console.WriteLine($"||||||||||---- {CommandDeleteUser} - УДАЛИТЬ ИГРОКА-----|||||||||");
+            Console.WriteLine($"||||||||||_________{CommandExit}  -  ВЫХОД__________|||||||||");
+        }
+
         private bool TryGetPlayer(string inputDescription, string DescriptionSuccessInput, out Player player)
         {
             player = null;
@@ -121,42 +157,6 @@ namespace OOP3
             }
 
             return false;
-        }   
-
-        public void ShowItems()
-        {
-            for (int i = 0; i < _dataPlayers.Count; i++)
-            {
-                Console.Write("\nУникальный номер - " + _dataPlayers[i].UniqueNumber + "\nУровень - " + _dataPlayers[i].PlayerLevel
-                  + "\nНикнейм: " + _dataPlayers[i].NickName);
-
-                if (_dataPlayers[i].IsBanned)
-                {
-                    Console.WriteLine("\nИгрок свободен.");
-                }
-                else
-                {
-                    Console.WriteLine("\nИгрок заблокирован.");
-                }
-            }
-        }
-
-        public static void ShowMenu()
-        {
-            const string CommandAddUser = "add";
-            const string CommandOutputAllUsers = "output";
-            const string CommandDeleteUser = "delete";
-            const string CommandBlockUser = "ban";
-            const string CommandUnlockUser = "unlock";
-            const string CommandExit = "exit";
-
-            Console.WriteLine("=============M--------Е---------Н--------Ю==========");
-            Console.WriteLine($"||||||||||------{CommandAddUser} - ДОБАВИТЬ ИГРОКА------|||||||||");
-            Console.WriteLine($"||||||||||--{CommandOutputAllUsers} - ВЫВЕСТИ ВСЁХ ИГРОКОВ--|||||||||");
-            Console.WriteLine($"||||||||||--{CommandBlockUser} - ЗАБЛОКИРОВАТЬ ИГРОКА-----|||||||||");
-            Console.WriteLine($"||||||||||--{CommandUnlockUser} - РАЗБЛОКИРОВАТЬ ИГРОКА-|||||||||");
-            Console.WriteLine($"||||||||||---- {CommandDeleteUser} - УДАЛИТЬ ИГРОКА-----|||||||||");
-            Console.WriteLine($"||||||||||_________{CommandExit}  -  ВЫХОД__________|||||||||");
         }
     }
 
@@ -170,8 +170,6 @@ namespace OOP3
             NickName = nickName;
         }
 
-        private static int Identifications;
-
         public int UniqueNumber { get; private set; }
 
         public int PlayerLevel { get; private set; }
@@ -179,6 +177,8 @@ namespace OOP3
         public string NickName { get; private set; }
 
         public bool IsBanned { get; private set; }
+
+        private static int Identifications;
 
         public void BanUser()
         {
