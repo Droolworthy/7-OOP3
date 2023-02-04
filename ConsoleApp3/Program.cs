@@ -151,10 +151,6 @@ namespace OOP3
                     }
                 }
             }
-            else
-            {
-                Console.WriteLine("Ошибка. Попробуйте ещё раз.");
-            }
 
             return false;
         }
