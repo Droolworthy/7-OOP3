@@ -105,25 +105,22 @@ namespace OOP3
 
             if (isSuccess)
             {
-                for(int i = 0; i < _dataPlayers.Count; i++)
+                for (int i = 0; i < _dataPlayers.Count; i++)
                 {
-                    player = _dataPlayers[i];                    
-
-                    if (userNumber < _dataPlayers.Count && userNumber >= 0)
+                    if (userNumber == _dataPlayers[i].UniqueNumber)
                     {
-                        if (userNumber == _dataPlayers[i].UniqueNumber)
-                        {
-                            Console.WriteLine(DescriptionSuccessInput);
-                            return true;
-                        }
+                        Console.WriteLine(DescriptionSuccessInput);
+                        player = _dataPlayers[i];
+                        return true;
                     }
+
                 }
             }
             else
             {
                 Console.WriteLine("Ошибка. Попробуйте ещё раз.");
             }
-            
+
             return false;
         }   
 
