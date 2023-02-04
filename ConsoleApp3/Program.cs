@@ -145,8 +145,8 @@ namespace OOP3
                 {
                     if (userNumber == _dataPlayers[i].UniqueNumber)
                     {
-                        Console.WriteLine(DescriptionSuccessInput);
                         player = _dataPlayers[i];
+                        Console.WriteLine(DescriptionSuccessInput);
                         return true;
                     }
                 }
