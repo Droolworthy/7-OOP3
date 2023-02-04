@@ -113,7 +113,6 @@ namespace OOP3
                         player = _dataPlayers[i];
                         return true;
                     }
-
                 }
             }
             else
