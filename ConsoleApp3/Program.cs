@@ -15,7 +15,9 @@ namespace OOP3
             const string CommandExit = "exit";
 
             Database database = new Database();
+            
             bool isWorking = true;
+            
             string userInput;
 
             database.ShowMenu();
