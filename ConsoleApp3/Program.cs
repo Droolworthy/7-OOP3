@@ -15,12 +15,12 @@ namespace OOP3
             const string CommandExit = "exit";
 
             Database database = new Database();
-            
+
             bool isWorking = true;
-            
+
             string userInput;
 
-            database.ShowMenu();
+            ShowMenu();
 
             while (isWorking)
             {
@@ -28,7 +28,7 @@ namespace OOP3
                 userInput = Console.ReadLine();
 
                 Console.Clear();
-                database.ShowMenu();
+                ShowMenu();
 
                 switch (userInput)
                 {
@@ -37,7 +37,7 @@ namespace OOP3
                         break;
 
                     case CommandOutputAllUsers:
-                        database.ShowItems();
+                        database.ShowInfoUsers();
                         break;
 
                     case CommandDeleteUser:
@@ -61,6 +61,17 @@ namespace OOP3
                             $"{CommandBlockUser}, {CommandUnlockUser} или {CommandExit}");
                         break;
                 }
+            }
+
+            static void ShowMenu()
+            {
+                Console.WriteLine("=============M--------Е---------Н--------Ю==========");
+                Console.WriteLine($"||||||||||------{CommandAddUser} - ДОБАВИТЬ ИГРОКА------|||||||||");
+                Console.WriteLine($"||||||||||--{CommandOutputAllUsers} - ВЫВЕСТИ ВСЁХ ИГРОКОВ--|||||||||");
+                Console.WriteLine($"||||||||||--{CommandBlockUser} - ЗАБЛОКИРОВАТЬ ИГРОКА-----|||||||||");
+                Console.WriteLine($"||||||||||--{CommandUnlockUser} - РАЗБЛОКИРОВАТЬ ИГРОКА-|||||||||");
+                Console.WriteLine($"||||||||||---- {CommandDeleteUser} - УДАЛИТЬ ИГРОКА-----|||||||||");
+                Console.WriteLine($"||||||||||_________{CommandExit}  -  ВЫХОД__________|||||||||");
             }
         }
     }
@@ -96,7 +107,7 @@ namespace OOP3
             player.UnbanUser();
         }
 
-        public void ShowItems()
+        public void ShowInfoUsers()
         {
             for (int i = 0; i < _dataPlayers.Count; i++)
             {
@@ -112,24 +123,6 @@ namespace OOP3
                     Console.WriteLine("\nИгрок заблокирован.");
                 }
             }
-        }
-
-        public void ShowMenu()
-        {
-            const string CommandAddUser = "add";
-            const string CommandOutputAllUsers = "output";
-            const string CommandDeleteUser = "delete";
-            const string CommandBlockUser = "ban";
-            const string CommandUnlockUser = "unlock";
-            const string CommandExit = "exit";
-
-            Console.WriteLine("=============M--------Е---------Н--------Ю==========");
-            Console.WriteLine($"||||||||||------{CommandAddUser} - ДОБАВИТЬ ИГРОКА------|||||||||");
-            Console.WriteLine($"||||||||||--{CommandOutputAllUsers} - ВЫВЕСТИ ВСЁХ ИГРОКОВ--|||||||||");
-            Console.WriteLine($"||||||||||--{CommandBlockUser} - ЗАБЛОКИРОВАТЬ ИГРОКА-----|||||||||");
-            Console.WriteLine($"||||||||||--{CommandUnlockUser} - РАЗБЛОКИРОВАТЬ ИГРОКА-|||||||||");
-            Console.WriteLine($"||||||||||---- {CommandDeleteUser} - УДАЛИТЬ ИГРОКА-----|||||||||");
-            Console.WriteLine($"||||||||||_________{CommandExit}  -  ВЫХОД__________|||||||||");
         }
 
         private bool TryGetPlayer(string inputDescription, string DescriptionSuccessInput, out Player player)
@@ -160,10 +153,12 @@ namespace OOP3
 
     class Player
     {
+        private static int _identifications;
+
         public Player(string nickName)
         {
-            UniqueNumber = ++Identifications;
-            PlayerLevel = Identifications;
+            UniqueNumber = ++_identifications;
+            PlayerLevel = _identifications;
             IsBanned = true;
             NickName = nickName;
         }
@@ -175,8 +170,6 @@ namespace OOP3
         public string NickName { get; private set; }
 
         public bool IsBanned { get; private set; }
-
-        private static int Identifications;
 
         public void BanUser()
         {
